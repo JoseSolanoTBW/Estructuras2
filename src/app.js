@@ -11,18 +11,45 @@ $(function () {
   });
 });
 
-function showMovie(title) {
+function showMovie(name) {
   api
-    .getMovie(title)
-    .then(movie => {
-      if (!movie) return;
+    .getMovie(name)
+    .then(car => {
+      if (!car) return;
 
-      $("#title").text(movie.title);
-      $("#poster").attr("src","https://neo4j-documentation.github.io/developer-resources/language-guides/assets/posters/"+encodeURIComponent(movie.title)+".jpg");
+      $("#title").text(car.title);
+      $("#poster").attr("src", car.img);
       const $list = $("#crew").empty();
-      movie.cast.forEach(cast => {
-        $list.append($("<li>" + cast.name + " " + cast.job + (cast.job === "acted" ? " as " + cast.role : "") + "</li>"));
-      });
+
+      if(car.type){
+        $list.append($("<p>" + "Autos disponibles de la marca:  "+ car.title + "</p>"));
+        car.cars.forEach(c => {
+          $list.append($("<li>" + c.name + "</li>"));
+        });
+        $list.append($("<p>" + "Agencias donde se vende la marca:  "+ car.title + "</p>"));
+        car.agencies.forEach(c => {
+          $list.append($("<li>" + c.title + "</li>"));
+        });
+      }else{
+        $list.append($("<p>" + "Agencias donde se vende el modelo:  "+ car.title + "</p>"));
+        car.agencies.forEach(c => {
+          $list.append($("<li>" + c.title + "</li>"));
+        });
+        if(car.agents.length != 0 && car.agents[0].name != null){
+          $list.append($("<p>" + "Agentes que venden el modelo:  "+ car.title + "</p>"));
+          car.agents.forEach(c => {
+            $list.append($("<li> Nombre: " + c.name + "  Correo: "+ c.email +"  Tel: "+ c.phone+"</li>"));
+          });
+        }
+        if(car.types.length != 0 && car.types[0].title != null){
+          $list.append($("<p>" + "Caracterísitcas del auto:  "+ car.title + "</p>"));
+          car.types.forEach(c => {
+            $list.append($("<li> Tipo: " + c.title + ",  Puertas: "+ c.doors +"</li>"));
+          });
+        }
+        
+      }
+      
     }, "json");
 }
 
@@ -30,20 +57,20 @@ function search() {
   const query = $("#search").find("input[name=search]").val();
   api
     .searchMovies(query)
-    .then(movies => {
+    .then(cars => {
       const t = $("table#results tbody").empty();
 
-      if (movies) {
-        movies.forEach(movie => {
-          $("<tr><td class='movie'>" + movie.title + "</td><td>" + movie.released + "</td><td>" + movie.tagline + "</td></tr>").appendTo(t)
+      if (cars) {
+        cars.forEach(car => {
+          $("<tr><td><img src="+ car.image +" /></td><td class='movie'>" + car.name + "</td><td>" + car.publish.low + "</td><td>" + (car.price == "" ? "Esto es una marca" : car.price) + "</td></tr>").appendTo(t)
             .click(function() {
               showMovie($(this).find("td.movie").text());
             })
         });
 
-        const first = movies[0];
+        const first = cars[0];
         if (first) {
-          showMovie(first.title);
+          showMovie(first.name);
         }
       }
     });

@@ -10,7 +10,7 @@ context('Neo4j Movies app', () => {
     })
 
     it('displays the application title', () => {
-        cy.get('.navbar-brand .brand').contains('Neo4j Movies')
+        cy.get('.navbar-brand .brand').contains('Neo4j Busqueda de Autos')
     })
 
     it('displays default movie titles', () => {

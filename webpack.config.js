@@ -29,8 +29,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({template: 'src/assets/index.html'}),
     new Webpack.EnvironmentPlugin({
-      'NEO4J_URI': 'bolt://localhost:11014',
-      'NEO4J_DATABASE': 'movie',
+      'NEO4J_URI': 'bolt://localhost:11005',
+      'NEO4J_DATABASE': 'cars',
       'NEO4J_USER': 'neo4j',
       'NEO4J_PASSWORD': 'jose',
       'NEO4J_VERSION': ''
