@@ -1,6 +1,4 @@
 require('file-loader?name=[name].[ext]!../node_modules/neo4j-driver/lib/browser/neo4j-web.min.js');
-const Movie = require('./models/Movie');
-const MovieCast = require('./models/MovieCast');
 const _ = require('lodash');
 const BrandCar = require('./models/BrandCar');
 const DetailCarBrand = require('./models/DetailCarBrand');
