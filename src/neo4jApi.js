@@ -86,8 +86,8 @@ function getMovie(title) {
 function getGraph() {
   const session = driver.session({database: database});
   return session.readTransaction((tx) =>
-    tx.run('MATCH (m:Movie)<-[:ACTED_IN]-(a:Person) \
-    RETURN m.title AS movie, collect(a.name) AS cast \
+    tx.run('MATCH (p:Car)-[:BUILT_BY]->(a:Brand) \
+    RETURN p.name AS movie, collect(a.title) AS cast \
     LIMIT $limit', {limit: neo4j.int(100)}))
     .then(results => {
       const nodes = [], rels = [];
