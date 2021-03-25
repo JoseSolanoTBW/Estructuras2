@@ -6,6 +6,8 @@
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
+    "apollo-server": "^2.21.2",
+    "graphql": "^15.5.0",
     "lodash": "^4.15.0",
     "neo4j-driver": "^4.2.2"
   },
