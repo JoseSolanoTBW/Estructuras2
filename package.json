@@ -7,6 +7,7 @@
   "private": true,
   "dependencies": {
     "apollo-server": "^2.21.2",
+    "concurrently": "^6.0.0",
     "graphql": "^15.5.0",
     "lodash": "^4.15.0",
     "neo4j-driver": "^4.2.2"
@@ -24,6 +25,6 @@
   "scripts": {
     "clean": "rimraf build",
     "build": "webpack",
-    "start": "webpack serve"
+    "start": "concurrently \"webpack serve \" \"node src/server/server.js\""
   }
 }
