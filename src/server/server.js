@@ -6,28 +6,87 @@ const { ApolloServer, gql } = require('apollo-server');
 const typeDefs = gql`
   # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
 
-  # This "Book" type defines the queryable fields for every book in our data source.
-  type Book {
+  type Brand {
     title: String
-    author: String
+    released: String
+    img: String
+    models: [Model]
+    agencies: [Agency]
+  }
+
+  type Car {
+    name: String
+    price: Int
+    img: String
+    model: Model
+    category: Category
+    features: Feature
+    agencies: [Agency]
+  }
+
+  type Model {
+    name: String
+    born: String
+    cars: [Car]
+    agencies: [Agency]
+  }
+
+  type Agency {
+    title: String
+    released: String
+    models: [Model]
+    agents: [Agent]
+  } 
+
+  type Agent {
+    name: String
+    email: String
+    phone: String
+    agencies: [Agency]
+    cars: [Car]
+  }
+
+  type Feature {
+    doors: Int
+    wheels: Int
+    weight: Int
+    color: String
+    engeine: Engeine
+    fuel: Fuel
+    Cars: [Car]
+  }
+
+  type Engeine{
+    name: String
+    power: Int
+  }
+
+  type Fuel{
+    name: String
+    price: Int
+  }
+
+  type Category {
+    name: String
+    cars: [Car]
   }
 
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
-    books: [Book]
+    brands: [Brand]
   }
 `;
 
-const books = [
+const brands = [
     {
-      title: 'The Awakening',
-      author: 'Kate Chopin',
+      title: 'Alfa Romeo',
+      released: '1789',
     },
     {
-      title: 'City of Glass',
-      author: 'Paul Auster',
+      title: 'Ford',
+      released: '1896',
     },
   ];
 
@@ -35,7 +94,7 @@ const books = [
 // schema. This resolver retrieves books from the "books" array above.
 const resolvers = {
     Query: {
-      books: () => books,
+      brands: () => brands,
     },
   };
   
