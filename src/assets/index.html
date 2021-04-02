@@ -27,7 +27,6 @@
     <script src="https://cdn.jsdelivr.net/npm/graphql-voyager/dist/voyager.min.js"></script>
     <title>Neo4j Movies</title>
 </head>
-
 <body>
 <div id="graph">
 </div>
@@ -42,8 +41,7 @@
                                 <input type="text" value="Audi" placeholder="Busque un carro o marca" class="form-control" name="search">
                             </div>
                             <button class="btn btn-default" type="submit">Filtrar</button>
-                            <button class="btn btn-default" type="submit" href="/src/assets/schema.html">Ver esquema</button>
-                            <a href="/src/assets/schema.html">Ver anchor link</a>
+                            <button class="btn btn-default" type="submit" href="">Ver esquema</button>
                         </form>
                     </li>
                 </ul>
@@ -94,37 +92,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div>
-    <div id="voyager">Cargando...</div>
-    <script>
-      function introspectionProvider(introspectionQuery) {
-        return fetch('http://localhost:4000/graphql', {
-          method: 'post',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ query: introspectionQuery }),
-          credentials: 'include',
-        })
-          .then(function (response) {
-            return response.text();
-          })
-          .then(function (responseBody) {
-            try {
-              return JSON.parse(responseBody);
-            } catch (error) {
-              return responseBody;
-            }
-          });
-      }
-      // Render <Voyager /> into the body.
-      GraphQLVoyager.init(document.getElementById('voyager'), {
-        introspection: introspectionProvider,
-      });
-    </script>
 </div>
 <style type="text/css">
     .node { stroke: #222; stroke-width: 1.5px; }
