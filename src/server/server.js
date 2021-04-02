@@ -101,7 +101,13 @@ const resolvers = {
 
   // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ 
+  typeDefs, 
+  resolvers,
+  cors: {
+		origin: 'http://localhost:8080',			// <- allow request from all domains
+		credentials: true}	// <- enable CORS response for requests with credentials (cookies, http authentication) 
+});
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
