@@ -105,7 +105,7 @@ const server = new ApolloServer({
   typeDefs, 
   resolvers,
   cors: {
-		origin: 'http://localhost:8080',			// <- allow request from all domains
+		origin: 'http://localhost:3000',			// <- allow request from all domains
 		credentials: true}	// <- enable CORS response for requests with credentials (cookies, http authentication) 
 });
 
