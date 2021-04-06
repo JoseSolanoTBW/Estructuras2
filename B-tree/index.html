@@ -1,0 +1,84 @@
+<html>
+
+<head>
+  <title>b-tree lol</title>
+</head>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet" />
+
+
+<meta http-equiv="Cache-control" content="NO-CACHE">
+
+
+<body id="main">
+
+  <div id="inputs">
+    <h1>B-Tree <span class="label label-info reset-btree">Order <span id="order-display"></span></span></h1>
+
+    <form action="#" id="create-form" class="form-inline">
+      <p>
+        Crear un árbol balanceado(B-tree) con el orden
+        <input type="text" class="form-control" value="3" id="new-order"/><br/>
+        y vea con la cantidad de
+        <input type="text" class="form-control" value="5" id="new-seed"/>
+        números aleatorios.
+      </p>
+      <button type="submit" class="btn btn-primary">Continue &rarr;</button>
+    </form>
+
+    <form action="#" id="add-form" class="form-inline">
+      <div class="form-group">
+        <label for="add"></label>
+        <input type="text" class="form-control" placeholder="Ingresa un número..." id="input-add"/>
+      </div>
+      <button type="submit" class="btn btn-primary">Agregar</button>
+      <a href="#" id="clear-button" class="btn btn-default reset-btree">Resetear</a>
+    </form>
+
+  </div>
+
+
+<div id="canvas"></div>
+
+<a href="#" id="what-is-this" class="note">What is this?</a>
+<a href="#" id="close-this" class="note">Close</a>
+
+<div id="popup">
+  <p>Un <strong>B-tree</strong> es una estructura de datos que consta de nodos ordenados en un árbol balanceado. Cada nodo contiene <em>keys</em> (los números que se observan) e <em>hijos</em> (los nodos debajo del mismo).</p>
+
+  <p>Los nodos estan ordenados por el lado izquierdo, en el medio, o en la derecha dependiendo si sus claves(keys) son menores, intermedios o mayores que las claves de los padres.</p>
+
+  <p>La <em>raíz</em> es el nodo top, <em>nodos internos</em> están en el medio, y <em>nodos hoja</em> están al final. Usando esta terminología, árbol-b con un orden <em>m</em> válido sigue las siguiente reglas:</p>
+
+  <ul>
+    <li>Cada nodo tiene como máximo <em>n</em> hijos.</li>
+    <li>Cada nodo interno tiene al menos <em>ceil( m / 2 )</em> hijos.</li>
+    <li>El nodo raíz tiene al menos 2 hijos si no es una hoja.</li>
+    <li>Un nodo no hoja<em>n</em> contiene hijos <em>n-1</em> claves(keys).</li>
+    <li>Todas las hojas tiene un mismo nivel</li>
+  </ul>
+
+  <p>Los B-trees permite realizar busquedas por valor y nos permite realizar de forma rapida las búsquedas de valores en bases de datos y file systems.</p>
+
+</div>
+
+</body>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="assets/js/btree.js"></script>
+<script type="text/javascript" src="assets/js/btree-node.js"></script>
+<script type="text/javascript" src="assets/js/script.js"></script>
+<script type="text/javascript" src="assets/js/debugging.js"></script>
+<script>
+  // google analytics
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4892895-7', 'auto');
+  ga('send', 'pageview');
+</script>
+</html>
